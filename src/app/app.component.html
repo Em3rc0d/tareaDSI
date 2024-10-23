@@ -1,84 +1,71 @@
-<div class="container mx-auto p-6 md:p-8 lg:p-10">
-  <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Búsqueda de Usuario Aleatorio</h1>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bg-white shadow-lg rounded-lg px-6 py-8 mb-8">
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="nombreCompleto">Nombre Completo</label>
-      <input formControlName="nombreCompleto" placeholder="Nombre Completo" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
+<div class="flex flex-row min-h-screen">
+  <!-- Navbar en la izquierda -->
+  <div class="w-1/4 h-screen p-6 md:p-8 lg:p-10 bg-gray-100">
+    <div>
+      <!-- Información del usuario aleatorio -->
+      <div *ngIf="randomUser" class="mb-6 p-4 bg-gray-100 rounded-lg shadow">
+        <p class="text-gray-700">
+          <strong>Bienvenido </strong> {{ randomUser.name.first }} {{ randomUser.name.last }}
+        </p>
+        <img
+          [src]="randomUser.picture.large"
+          alt="Foto de usuario"
+          class="rounded-lg mt-2 w-32 h-32 object-cover"
+        />
+      </div>
+    
+      <!-- Botones con redireccionamiento usando a y href -->    
+      <h2 class="text-2xl font-bold mb-4 text-center">
+        ¿Qué deseas hacer hoy?
+      </h2>
+      <a
+        href="horoscopo"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 block text-center"
+      >
+        Noticia del día
+      </a>
+    
+      <a
+        href="divisas"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 mb-4 block text-center"
+      >
+        Cambio de Divisas
+      </a>
+      <a
+        href="forms"
+        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center"
+      >
+        Contáctanos
+      </a>
     </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="correo">Correo</label>
-      <input formControlName="correo" placeholder="Correo" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
-    </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="contrasena">Contraseña</label>
-      <input formControlName="contrasena" type="password" placeholder="Contraseña" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
-    </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="confirmarContrasena">Confirmar Contraseña</label>
-      <input formControlName="confirmarContrasena" type="password" placeholder="Confirmar Contraseña" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
-    </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="rol">Rol</label>
-      <select formControlName="rol" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400">
-        <option value="">Seleccionar Rol</option>
-        <option value="admin">Admin</option>
-        <option value="user">User</option>
-      </select>
-    </div>
-
-    <div class="mb-6">
-      <label class="block text-gray-700 text-sm font-semibold mb-2" for="departamento">Departamento</label>
-      <input formControlName="departamento" placeholder="Departamento" 
-        class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
-    </div>
-
-    <div class="flex items-center justify-center">
-      <button type="submit" 
-        class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400">
-        Enviar
-      </button>
-    </div>
-  </form>
-
-  <div *ngIf="horaLocal" class="mb-6 p-4 bg-gray-100 rounded-lg shadow">
-    <h2 class="text-xl font-semibold text-gray-800">Hora Local:</h2>
-    <p class="text-gray-700">{{ horaLocal }}</p>
   </div>
-
-  <div *ngIf="randomUser" class="mb-6 p-4 bg-gray-100 rounded-lg shadow">
-    <h2 class="text-xl font-semibold text-gray-800">Usuario Aleatorio:</h2>
-    <p class="text-gray-700"><strong>Nombre:</strong> {{ randomUser.name.first }} {{ randomUser.name.last }}</p>
-    <p class="text-gray-700"><strong>Correo:</strong> {{ randomUser.email }}</p>
-    <p class="text-gray-700"><strong>Teléfono:</strong> {{ randomUser.phone }}</p>
-    <img [src]="randomUser.picture.large" alt="Foto de usuario" class="rounded-lg mt-2 w-32 h-32 object-cover" />
+  <!-- Contenido de la derecha, usando el espacio restante -->
+  <div class="w-3/4 h-screen p-6">
+    <router-outlet></router-outlet>
   </div>
+</div>
 
-  <div class="p-4 bg-gray-100 rounded-lg shadow">
-    <h1 class="text-3xl font-bold mb-4 text-gray-800">Resultados de Spotify:</h1>
+<!-- Contenido en la derecha -->
+<!-- <div class="w-3/4 container mx-auto p-6 md:p-8 lg:p-10"> -->
+  <!-- <div class="p-4 bg-gray-100 rounded-lg shadow"> -->
+    <!-- Resultados de Spotify -->
+    <!-- <h1 class="text-3xl font-bold mb-4 text-gray-800">Resultados de Spotify:</h1>
     <div *ngIf="spotifyResults.length > 0">
       <ul class="list-disc pl-5">
         <li *ngFor="let result of spotifyResults" class="text-gray-700">
           {{ result.name }} - {{ result.type }}
         </li>
       </ul>
-    </div>
-    <div *ngIf="spotifyResults.length === 0" class="text-gray-500">No se encontraron resultados de Spotify.</div>
-  
-    <h1 class="text-3xl font-bold mb-4 mt-6 text-gray-800">Horóscopo de Aries</h1>
+    </div> -->
+    <!-- <div *ngIf="spotifyResults.length === 0" class="text-gray-500">No se encontraron resultados de Spotify.</div> -->
+    
+    <!-- Horóscopo de Aries -->
+    <!-- <h1 class="text-3xl font-bold mb-4 mt-6 text-gray-800">Horóscopo de Aries</h1>
     <div *ngIf="error" class="text-red-600 mb-4">{{ error }}</div>
     <div *ngIf="horoscope" class="bg-gray-200 p-4 rounded">
       <h2 class="text-xl font-semibold text-gray-800">Horóscopo para mañana:</h2>
       <p class="text-gray-700">{{ horoscope }}</p>
     </div>
     <div *ngIf="!horoscope && !error" class="text-gray-500">Cargando horóscopo...</div>
-  </div>
-</div>
+  </div> -->
+<!-- </div> -->

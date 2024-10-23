@@ -1,0 +1,12 @@
+<div class="p-6 bg-gray-100 rounded-lg">
+    <h2 class="text-3xl font-bold mb-6 text-center text-indigo-600">NOTICIAS DEL DÍA</h2>
+    <div class="max-h-64 overflow-y-auto"> <!-- Added scrollable container -->
+        <ul class="space-y-4">
+            <li *ngFor="let article of articles" class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow">
+                <a [href]="article.url" target="_blank" class="text-lg font-semibold text-indigo-700 hover:text-indigo-500">
+                    {{ article.title }}
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

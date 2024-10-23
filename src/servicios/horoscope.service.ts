@@ -6,17 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class HoroscopeService {
-  private baseUrl = 'https://horoscopes-ai.p.rapidapi.com/get_horoscope';
+  private apiUrl = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=265b73838e614472ad5886bda88a40a7';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  getHoroscope(sign: string): Observable<any> {
-    const url = `${this.baseUrl}/${sign}/tomorrow/general/es`;
-    const headers = new HttpHeaders({
-      'X-Rapidapi-Key': '7ec82321f8msh3f9148105eb8ed7p13aebejsn2dbca5bb8a1f',
-      'X-Rapidapi-Host': 'horoscopes-ai.p.rapidapi.com'
-    });
-
-    return this.http.get<any>(url, { headers });
+  getTopHeadlines(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
   }
 }

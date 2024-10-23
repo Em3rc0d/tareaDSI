@@ -3,9 +3,11 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TimeService } from './../servicios/time.service';
-import { RandomService } from './../servicios/random.service';
+
 import { SpotifyService } from './../servicios/spotify.service';
 import { HoroscopeService } from '../servicios/horoscope.service';
+import { NavbarComponent } from './navbar/navbar.component';
+import { RandomService } from '../servicios/random.service';
 
 @Component({
   selector: 'app-root',
@@ -15,49 +17,24 @@ import { HoroscopeService } from '../servicios/horoscope.service';
   imports: [ReactiveFormsModule, CommonModule, RouterOutlet]
 })
 export class AppComponent implements OnInit {
-  userForm: FormGroup;
-  horaLocal: string = '';
   randomUser: any;
   spotifyResults: any[] = []; // Inicializa la lista de resultados de Spotify
   horoscope: string | null = null; // Variable para almacenar el horóscopo
   error: string | null = null; // Variable para manejar errores
 
   constructor(
-    private formBuilder: FormBuilder,
-    private timeService: TimeService,
-    private randomService: RandomService,
-    private spotifyService: SpotifyService,
-    private horoscopeService: HoroscopeService
+    private randomService: RandomService
+    // private spotifyService: SpotifyService,
+    // private horoscopeService: HoroscopeService
   ) {
-    this.userForm = this.formBuilder.group({
-      nombreCompleto: ['', Validators.required],
-      correo: ['', [Validators.required, Validators.email]],
-      contrasena: ['', [Validators.required, Validators.minLength(6)]],
-      confirmarContrasena: ['', [Validators.required, Validators.minLength(6)]],
-      rol: ['', Validators.required],
-      departamento: ['']
-    });
+    
   }
 
   ngOnInit(): void {
-    this.obtenerHoraLocal();
     this.obtenerUsuarioAleatorio();
-    this.buscarSpotify('coldplay'); // Llama a la búsqueda de Spotify con "coldplay"
-    this.getHoroscope('aries');
+    // this.buscarSpotify('coldplay'); // Llama a la búsqueda de Spotify con "coldplay"
+    // this.getHoroscope('aries');
   }
-
-  obtenerHoraLocal() {
-    this.timeService.getHoraLocal().subscribe(
-      data => {
-        this.horaLocal = data.dateTime;
-        console.log('Hora Local:', this.horaLocal);
-      },
-      error => {
-        console.error('Error al obtener la hora:', error);
-      }
-    );
-  }
-
   obtenerUsuarioAleatorio() {
     this.randomService.getRandomUser().subscribe(
       data => {
@@ -70,47 +47,40 @@ export class AppComponent implements OnInit {
     );
   }
 
-  buscarSpotify(query: string) {
-    if (!query) {
-      console.error('Se requiere un query para buscar en Spotify.');
-      return;
-    }
+  // buscarSpotify(query: string) {
+  //   if (!query) {
+  //     console.error('Se requiere un query para buscar en Spotify.');
+  //     return;
+  //   }
   
-    this.spotifyService.search(query).subscribe(
-      data => {
-        console.log('Resultados de Spotify:', data); // Muestra la respuesta completa
-        if (data.results) {
-          this.spotifyResults = data.results; // Asigna resultados si existen
-        } else {
-          this.spotifyResults = []; // Asegúrate de inicializar en caso de que no existan resultados
-        }
-      },
-      error => {
-        console.error('Error al buscar en Spotify:', error);
-        this.spotifyResults = []; // Inicializa a un arreglo vacío en caso de error
-      }
-    );
-  }
+  //   this.spotifyService.search(query).subscribe(
+  //     data => {
+  //       console.log('Resultados de Spotify:', data); // Muestra la respuesta completa
+  //       if (data.results) {
+  //         this.spotifyResults = data.results; // Asigna resultados si existen
+  //       } else {
+  //         this.spotifyResults = []; // Asegúrate de inicializar en caso de que no existan resultados
+  //       }
+  //     },
+  //     error => {
+  //       console.error('Error al buscar en Spotify:', error);
+  //       this.spotifyResults = []; // Inicializa a un arreglo vacío en caso de error
+  //     }
+  //   );
+  // }
   
-  getHoroscope(sign: string) {
-    this.horoscopeService.getHoroscope(sign).subscribe(
-      data => {
-        this.horoscope = data.horoscope; // Ajusta según la estructura de la respuesta
-        console.log('Horóscopo obtenido:', this.horoscope);
-      },
-      error => {
-        console.error('Error al obtener el horóscopo:', error);
-        this.error = 'No se pudo obtener el horóscopo. Intenta más tarde.';
-      }
-    );
-  }
+  // getHoroscope(sign: string) {
+  //   this.horoscopeService.getHoroscope(sign).subscribe(
+  //     data => {
+  //       this.horoscope = data.horoscope; // Ajusta según la estructura de la respuesta
+  //       console.log('Horóscopo obtenido:', this.horoscope);
+  //     },
+  //     error => {
+  //       console.error('Error al obtener el horóscopo:', error);
+  //       this.error = 'No se pudo obtener el horóscopo. Intenta más tarde.';
+  //     }
+  //   );
+  // }
   
 
-  onSubmit() {
-    if (this.userForm.valid) {
-      console.log('Formulario enviado:', this.userForm.value);
-    } else {
-      console.log('Formulario no válido');
-    }
-  }
 }
