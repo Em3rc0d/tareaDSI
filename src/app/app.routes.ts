@@ -5,6 +5,8 @@ import { DivisasComponent } from './divisas/divisas.component';
 import { HomeComponent } from './home/home.component';
 import { TriviaComponent } from './trivia/trivia.component';
 import { GameComponent } from './game/game.component';
+import { NationalityComponent } from './nationality/nationality.component';
+import { LyricsComponent } from '../lyrics/lyrics.component';
 
 export const routes: Routes = [
     {
@@ -35,5 +37,13 @@ export const routes: Routes = [
     {
         path: 'games',
         component: GameComponent
+    },
+    {
+        path: 'nationality',
+        component: NationalityComponent
+    },
+    {
+        path: 'lyrics',
+        component: LyricsComponent
     }
 ];
