@@ -11,7 +11,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./nationality.component.css']
 })
 export class NationalityComponent implements OnInit {
-  name: string = 'FARID'; // Default name
+  name: string = ''; // Default name
   nationalities: any;
 
   constructor(private nationalizeService: NationalizeService) {}
