@@ -4,6 +4,7 @@ import { HoroscopoComponent } from './horoscopo/horoscopo.component';
 import { DivisasComponent } from './divisas/divisas.component';
 import { HomeComponent } from './home/home.component';
 import { TriviaComponent } from './trivia/trivia.component';
+import { GameComponent } from './game/game.component';
 
 export const routes: Routes = [
     {
@@ -30,5 +31,9 @@ export const routes: Routes = [
     {
         path: 'trivia',
         component: TriviaComponent
+    },
+    {
+        path: 'games',
+        component: GameComponent
     }
 ];
