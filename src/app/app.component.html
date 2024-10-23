@@ -1,73 +1,76 @@
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-  <div class="w-full max-w-lg bg-white p-8 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold text-center mb-6 text-gray-700">Gestión de Usuarios y Roles</h2>
-    
-    <!-- Muestra la hora local -->
-    <div class="text-center mb-4 text-gray-600">
-      <p>Hora Local en Lima: {{ horaLocal }}</p>
+<div class="container mx-auto p-4">
+  <h1 class="text-2xl font-bold mb-4">Búsqueda de Usuario Aleatorio</h1>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="nombreCompleto">Nombre Completo</label>
+      <input formControlName="nombreCompleto" placeholder="Nombre Completo" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
     </div>
-    
-    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-      <!-- Nombre Completo -->
-      <div class="mb-4">
-        <label for="nombreCompleto" class="block text-sm font-medium text-gray-600">Nombre Completo:</label>
-        <input type="text" id="nombreCompleto" formControlName="nombreCompleto" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-          placeholder="Ingrese el nombre completo" required>
-      </div>
 
-      <!-- Correo Electrónico -->
-      <div class="mb-4">
-        <label for="correo" class="block text-sm font-medium text-gray-600">Correo Electrónico:</label>
-        <input type="email" id="correo" formControlName="correo" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-          placeholder="Ingrese el correo electrónico" required>
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="correo">Correo</label>
+      <input formControlName="correo" placeholder="Correo" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
 
-      <!-- Contraseña -->
-      <div class="mb-4">
-        <label for="contrasena" class="block text-sm font-medium text-gray-600">Contraseña:</label>
-        <input type="password" id="contrasena" formControlName="contrasena" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-          placeholder="Ingrese una contraseña segura" required>
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="contrasena">Contraseña</label>
+      <input formControlName="contrasena" type="password" placeholder="Contraseña" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
 
-      <!-- Confirmar Contraseña -->
-      <div class="mb-4">
-        <label for="confirmarContrasena" class="block text-sm font-medium text-gray-600">Confirmar Contraseña:</label>
-        <input type="password" id="confirmarContrasena" formControlName="confirmarContrasena" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-          placeholder="Confirme la contraseña" required>
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="confirmarContrasena">Confirmar Contraseña</label>
+      <input formControlName="confirmarContrasena" type="password" placeholder="Confirmar Contraseña" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
 
-      <!-- Asignación de Rol -->
-      <div class="mb-4">
-        <label for="rol" class="block text-sm font-medium text-gray-600">Rol del Usuario:</label>
-        <select id="rol" formControlName="rol" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-          <option value="" disabled>Seleccione un rol</option>
-          <option value="Administrador">Administrador</option>
-          <option value="Vendedor">Vendedor</option>
-          <option value="Inventario">Encargado de Inventario</option>
-          <option value="Cliente">Cliente</option>
-        </select>
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="rol">Rol</label>
+      <select formControlName="rol" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        <option value="">Seleccionar Rol</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+    </div>
 
-      <!-- Departamento (opcional) -->
-      <div class="mb-4">
-        <label for="departamento" class="block text-sm font-medium text-gray-600">Departamento (opcional):</label>
-        <input type="text" id="departamento" formControlName="departamento" 
-          class="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
-          placeholder="Ingrese el departamento del usuario (si aplica)">
-      </div>
+    <div class="mb-4">
+      <label class="block text-gray-700 text-sm font-bold mb-2" for="departamento">Departamento</label>
+      <input formControlName="departamento" placeholder="Departamento" 
+        class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+    </div>
 
-      <!-- Botón de Enviar -->
+    <div class="flex items-center justify-between">
       <button type="submit" 
-              class="w-full bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
-        Registrar Usuario
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        Enviar
       </button>
-    </form>
+    </div>
+  </form>
+
+  <div *ngIf="horaLocal" class="mb-4">
+    <h2 class="text-xl font-semibold">Hora Local:</h2>
+    <p class="text-gray-700">{{ horaLocal }}</p>
   </div>
 
+  <div *ngIf="randomUser" class="mb-4">
+    <h2 class="text-xl font-semibold">Usuario Aleatorio:</h2>
+    <p class="text-gray-700"><strong>Nombre:</strong> {{ randomUser.name.first }} {{ randomUser.name.last }}</p>
+    <p class="text-gray-700"><strong>Correo:</strong> {{ randomUser.email }}</p>
+    <p class="text-gray-700"><strong>Teléfono:</strong> {{ randomUser.phone }}</p>
+    <img [src]="randomUser.picture.large" alt="Foto de usuario" class="rounded-lg mt-2" />
+  </div>
+
+  <div *ngIf="spotifyResults.length > 0" class="mb-4">
+    <h2 class="text-xl font-semibold">Resultados de Spotify:</h2>
+    <ul class="list-disc pl-5">
+      <li *ngFor="let result of spotifyResults" class="text-gray-700">{{ result.name }} - {{ result.type }}</li>
+    </ul>
+  </div>
+  <div *ngIf="spotifyResults.length === 0 && (spotifyResults.length !== undefined)" class="mb-4">
+    <p class="text-gray-500">No se encontraron resultados.</p>
+  </div>
+  
   
 </div>
