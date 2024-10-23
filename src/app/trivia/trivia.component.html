@@ -1,0 +1,27 @@
+<div class="p-6 bg-gray-100 rounded-lg">
+    <h2 class="text-2xl font-bold mb-4 text-center">Trivia Question {{ currentQuestionIndex + 1 }}</h2>
+  
+    <div *ngIf="!isLastQuestion()">
+      <p class="text-lg text-gray-700" [innerHTML]="questions[currentQuestionIndex]?.question"></p>
+      <ul class="space-y-2 mt-4">
+        <li *ngFor="let answer of getAnswers()"
+            [ngClass]="{
+              'bg-green-100': isCorrectAnswer(answer) && isAnswerSelected(answer),
+              'bg-red-100': !isCorrectAnswer(answer) && isAnswerSelected(answer),
+              'bg-white': !isAnswerSelected(answer)
+            }"
+            class="p-2 rounded-lg shadow hover:bg-indigo-100 cursor-pointer"
+            (click)="selectedAnswer = answer">
+          {{ answer }}
+        </li>
+      </ul>
+      <button (click)="nextQuestion()" class="mt-4 bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500" 
+              [disabled]="!selectedAnswer">Next</button>
+    </div>
+  
+    <div *ngIf="isLastQuestion()">
+      <h3 class="text-xl font-semibold text-center">Quiz Complete!</h3>
+      <p class="text-center">Your Score: {{ score }} out of {{ questions.length }}</p>
+    </div>
+  </div>
+  

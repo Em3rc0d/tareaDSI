@@ -3,6 +3,7 @@ import { FormsComponent } from './forms/forms.component';
 import { HoroscopoComponent } from './horoscopo/horoscopo.component';
 import { DivisasComponent } from './divisas/divisas.component';
 import { HomeComponent } from './home/home.component';
+import { TriviaComponent } from './trivia/trivia.component';
 
 export const routes: Routes = [
     {
@@ -25,5 +26,9 @@ export const routes: Routes = [
     {
         path: 'divisas',
         component: DivisasComponent
+    },
+    {
+        path: 'trivia',
+        component: TriviaComponent
     }
 ];
