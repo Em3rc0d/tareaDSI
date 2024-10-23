@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TimeService } from './../servicios/time.service';
 import { RandomService } from './../servicios/random.service';
-import { SpotifyService } from './../servicios/spotify.service'; // Importa el servicio Spotify
+import { SpotifyService } from './../servicios/spotify.service';
+import { HoroscopeService } from '../servicios/horoscope.service';
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,15 @@ export class AppComponent implements OnInit {
   horaLocal: string = '';
   randomUser: any;
   spotifyResults: any[] = []; // Inicializa la lista de resultados de Spotify
+  horoscope: string | null = null; // Variable para almacenar el horóscopo
+  error: string | null = null; // Variable para manejar errores
 
   constructor(
     private formBuilder: FormBuilder,
     private timeService: TimeService,
     private randomService: RandomService,
-    private spotifyService: SpotifyService // Inyecta el servicio Spotify
+    private spotifyService: SpotifyService,
+    private horoscopeService: HoroscopeService
   ) {
     this.userForm = this.formBuilder.group({
       nombreCompleto: ['', Validators.required],
@@ -39,6 +43,7 @@ export class AppComponent implements OnInit {
     this.obtenerHoraLocal();
     this.obtenerUsuarioAleatorio();
     this.buscarSpotify('coldplay'); // Llama a la búsqueda de Spotify con "coldplay"
+    this.getHoroscope('aries');
   }
 
   obtenerHoraLocal() {
@@ -87,6 +92,18 @@ export class AppComponent implements OnInit {
     );
   }
   
+  getHoroscope(sign: string) {
+    this.horoscopeService.getHoroscope(sign).subscribe(
+      data => {
+        this.horoscope = data.horoscope; // Ajusta según la estructura de la respuesta
+        console.log('Horóscopo obtenido:', this.horoscope);
+      },
+      error => {
+        console.error('Error al obtener el horóscopo:', error);
+        this.error = 'No se pudo obtener el horóscopo. Intenta más tarde.';
+      }
+    );
+  }
   
 
   onSubmit() {
