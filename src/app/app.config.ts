@@ -14,7 +14,7 @@ export const appConfig: ApplicationConfig = {
       domain: 'dev-gw3t1o22is7w2ptm.us.auth0.com',
       clientId: 'HrIgMLQDvtP1CcWQ3MvPBqX9YzSBOEyS',
       authorizationParams: {
-        redirect_uri: typeof window !== 'undefined' ? window.location.origin : "localhost:4200",
+        redirect_uri: typeof window !== 'undefined' ? window.location.origin : "https://tarea-dsi.vercel.app",
       }
     })
   ]
