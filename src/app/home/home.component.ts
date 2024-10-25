@@ -13,7 +13,7 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   explore() {
-    const routes = ['horoscopo', 'divisas', 'forms'];
+    const routes = ['casita/horoscopo', 'casita/divisas', 'casita/trivia', 'casita/nationality', 'casita/lyrics'];
     const randomRoute = routes[Math.floor(Math.random() * routes.length)];
     this.router.navigate([randomRoute]);
   }

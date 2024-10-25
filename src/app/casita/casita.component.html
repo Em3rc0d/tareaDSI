@@ -1,0 +1,43 @@
+<div class="flex flex-col md:flex-row min-h-screen bg-gray-900">
+    <!-- Botón para mostrar/ocultar el menú en pantallas pequeñas -->
+    <button (click)="toggleMenu()" 
+            class="md:hidden p-2 text-white bg-blue-600 rounded-lg m-4">
+      {{ isMenuOpen ? 'Cerrar Menú' : 'Abrir Menú' }}
+    </button>
+    
+    <!-- Navbar en la izquierda -->
+    <div [ngClass]="{'block': isMenuOpen, 'hidden': !isMenuOpen}" 
+         class="md:block w-full md:w-1/4 h-auto p-6 md:p-8 lg:p-10 bg-gray-800 border-r border-gray-700">
+      <div>
+        <!-- Información del usuario aleatorio -->
+        <div class="flex flex-col items-center mb-4 text-center">
+          <h2 class="text-xl font-semibold text-white">Bienvenido, {{ usuario.name }}</h2>
+          <img
+            [src]="usuario.picture"
+            alt="Foto de usuario"
+            class="rounded-full mt-2 w-24 h-24 object-cover border-2 border-blue-500"
+          />
+        </div>
+  
+        <!-- Botones con redireccionamiento -->
+        <h2 class="text-2xl font-bold mb-4 text-center text-white">¿Qué deseas hacer hoy?</h2>
+        <div class="space-y-4">
+          <a href="casita/home" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Home</a>
+          <a href="casita/horoscopo" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Noticia del día</a>
+          <a href="casita/divisas" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Cambio de Divisas</a>
+          <a href="casita/lyrics" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Letra Canción</a>
+          <a href="casita/trivia" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Trivia</a>
+          <a href="casita/nationality" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">¿De donde provienes?</a>
+          <a href="casita/games" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Juegos</a>
+          <a href="casita/forms" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Contáctanos</a>
+          <a (click)="logOut()" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 block text-center transition-all duration-300">Salir</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Contenido de la derecha, usando el espacio restante -->
+    <div class="w-full md:w-3/4 h-auto p-6 bg-gray-100">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+  

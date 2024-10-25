@@ -1,30 +1,42 @@
 import { Component, OnInit } from '@angular/core';
-import { NationalizeService } from '../../servicios/nationalize.service';
+import { NationalityService } from '../../servicios/nationalize.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-nationality',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
   templateUrl: './nationality.component.html',
-  styleUrls: ['./nationality.component.css']
+  styleUrls: ['./nationality.component.css'],
+  standalone : true,
+  imports: [
+    CommonModule,
+    FormsModule
+  ]
 })
 export class NationalityComponent implements OnInit {
-  name: string = ''; // Default name
+  name: string = '';
   nationalities: any;
+  countries: any = [];
+  countryFlags: { [key: string]: string } = {};
 
-  constructor(private nationalizeService: NationalizeService) {}
+  constructor(private nationalityService: NationalityService) {}
 
   ngOnInit(): void {
-    this.getNationalities(); // Optional, to fetch default name's nationalities
+    this.loadCountries();
+  }
+
+  loadCountries(): void {
+    this.nationalityService.getCountries().subscribe(data => {
+      this.countries = data;
+      this.countries.forEach((country: any) => {
+        this.countryFlags[country.cca2] = country.flags.svg; // Mapear el código del país a la URL de la bandera
+      });
+    });
   }
 
   getNationalities(): void {
-    this.nationalizeService.getNationalities(this.name).subscribe(data => {
+    this.nationalityService.getNationalities(this.name).subscribe(data => {
       this.nationalities = data;
-    }, error => {
-      console.error('Error fetching nationalities:', error);
     });
   }
 }

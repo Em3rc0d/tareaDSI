@@ -1,25 +1,30 @@
-<div>
-    <h2>Nationalities for {{ name }}</h2>
-    
-    <input
+<div class="p-6 bg-gray-100 rounded-lg max-w-md mx-auto">
+  <h2 class="text-2xl font-bold mb-4 text-center text-indigo-600">Nationalities for {{ name }}</h2>
+  
+  <input
       type="text"
       [(ngModel)]="name"
       placeholder="Enter your name"
-      class="p-2 border rounded-lg mb-4 w-full"
-    />
-  
-    <button (click)="getNationalities()" class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 mb-4">
+      class="p-2 border border-gray-300 rounded-lg mb-4 w-full focus:outline-none focus:ring-2 focus:ring-indigo-400"
+  />
+
+  <button 
+      (click)="getNationalities()" 
+      class="bg-indigo-600 text-white py-2 px-4 rounded hover:bg-indigo-500 transition duration-300 mb-4 w-full">
       Search
-    </button>
-  
-    <div *ngIf="nationalities">
-      <ul>
-        <li *ngFor="let nationality of nationalities.country">
-          {{ nationality.country_id }}: {{ nationality.probability | number: '1.0-2' }}%
-        </li>
+  </button>
+
+  <div *ngIf="nationalities">
+      <ul class="space-y-2">
+          <li *ngFor="let nationality of nationalities.country" 
+              class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow flex items-center">
+              <img [src]="countryFlags[nationality.country_id]" alt="{{ nationality.country_id }} flag" class="w-6 h-6 mr-2">
+              {{ nationality.country_id }}: {{ nationality.probability | number: '1.0-2' }}%
+          </li>
       </ul>
-    </div>
-    
-    <div *ngIf="!nationalities">Loading...</div>
   </div>
   
+  <div *ngIf="!nationalities" class="text-center text-gray-700">
+      Loading...
+  </div>
+</div>

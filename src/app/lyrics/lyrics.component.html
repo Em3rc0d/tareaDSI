@@ -1,0 +1,26 @@
+<div class="max-w-md mx-auto mt-2 p-4 border rounded-lg shadow-md bg-white h-full">
+  <h1 class="text-xl font-semibold mb-4">Obtener Letra de Canción</h1>
+  <input 
+    [(ngModel)]="artist" 
+    placeholder="Artista" 
+    class="w-full p-2 mb-4 border border-gray-300 rounded" 
+  />
+  <input 
+    [(ngModel)]="title" 
+    placeholder="Título" 
+    class="w-full p-2 mb-4 border border-gray-300 rounded" 
+  />
+  <button 
+    (click)="fetchLyrics()" 
+    class="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+  >
+    Obtener Letra
+  </button>
+  <div 
+    *ngIf="lyrics" 
+    class="overflow-y-auto mt-4 text-gray-700" 
+    style="max-height: calc(100vh - 250px);" 
+  >
+    {{ lyrics }}
+  </div>
+</div>
