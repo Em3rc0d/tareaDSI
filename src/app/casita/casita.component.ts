@@ -13,7 +13,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./casita.component.css'] // Asegúrate de que la ruta sea correcta
 })
 export class CasitaComponent implements OnInit, OnDestroy {
-  randomUser: any;
   usuario: any = null;
   spotifyResults: any[] = []; // Inicializa la lista de resultados de Spotify
   horoscope: string | null = null; // Variable para almacenar el horóscopo
@@ -25,12 +24,11 @@ export class CasitaComponent implements OnInit, OnDestroy {
   isMenuOpen: boolean = false;
 
   constructor(
-    private randomService: RandomService,
     private auth: AuthService
   ) {}
 
   ngOnInit(): void {
-    this.obtenerUsuarioAleatorio();
+
     this.userSubscription = this.auth.user$.subscribe(user => {
       if(user) {
         this.usuario = user;
@@ -40,18 +38,6 @@ export class CasitaComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.userSubscription?.unsubscribe();
-  }
-
-  obtenerUsuarioAleatorio() {
-    this.randomService.getRandomUser().subscribe(
-      data => {
-        console.log('Usuario aleatorio:', data);
-        this.randomUser = data.results[0];
-      },
-      error => {
-        console.error('Error al obtener el usuario aleatorio:', error);
-      }
-    );
   }
 
   logOut() {

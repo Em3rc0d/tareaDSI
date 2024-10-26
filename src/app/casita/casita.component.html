@@ -11,9 +11,9 @@
       <div>
         <!-- Información del usuario aleatorio -->
         <div class="flex flex-col items-center mb-4 text-center">
-          <h2 class="text-xl font-semibold text-white">Bienvenido, {{ usuario.name }}</h2>
+          <h2 class="text-xl font-semibold text-white">Bienvenido, {{ usuario?.name }}</h2>
           <img
-            [src]="usuario.picture"
+            [src]="usuario?.picture"
             alt="Foto de usuario"
             class="rounded-full mt-2 w-24 h-24 object-cover border-2 border-blue-500"
           />
