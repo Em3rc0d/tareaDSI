@@ -1,0 +1,58 @@
+<div class="max-w-md mx-auto p-6 bg-white rounded-lg shadow-md space-y-4">
+    <h1 class="text-2xl font-bold text-center text-gray-800">Información de IP del Usuario</h1>
+    
+    <p class="text-gray-700">
+      <strong class="text-lg">IP del Usuario:</strong>
+    </p>
+    
+    <div class="flex flex-col space-y-2 mt-2 bg-gray-100 border rounded-lg p-4">
+      <span class="text-gray-800">
+        <strong>IPv4: </strong> <span class="text-blue-600">{{ userIpv4 }}</span>
+      </span>
+      <span class="text-gray-800">
+        <strong>IPv6: </strong> <span class="text-blue-600">{{ userIpv6 }}</span>
+      </span>
+    </div>
+  
+    <div class="mt-4 space-y-2">
+      <p class="text-gray-700">
+        <strong>País:</strong> {{ ipInfov4?.country || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Código del País:</strong> {{ ipInfov6?.country_code || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Región:</strong> {{ ipInfov6?.region || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Código de Región:</strong> {{ ipInfov6?.region_code || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Ciudad:</strong> {{ ipInfov6?.city || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Zona Horaria:</strong> {{ ipInfov6?.timezone?.current_time || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Latitud:</strong> {{ ipInfov4?.latitude || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Longitud:</strong> {{ ipInfov4?.longitude || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Proveedor de Internet:</strong> {{ ipInfov6?.connection?.isp || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Organización:</strong> {{ ipInfov6?.connection?.org || 'N/A' }}
+      </p>
+      <p class="text-gray-700">
+        <strong>Bandera:</strong>
+        <img *ngIf="ipInfov6?.flag?.img" [src]="ipInfov6.flag.img" alt="Bandera" class="inline-block w-10 h-6" />
+      </p>
+    </div>
+    
+    <div *ngIf="!ipInfov6" class="mt-4 text-gray-500 text-center">
+      <p>Cargando información de IP...</p>
+    </div>
+  </div>
+  

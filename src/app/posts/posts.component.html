@@ -1,0 +1,38 @@
+<div class="container mx-auto px-4 py-8">
+    <!-- Contenedor de publicaciones -->
+    <div *ngFor="let post of posts" class="post bg-white border border-gray-300 rounded-lg p-4 mb-4 shadow-md transition-all duration-300 hover:shadow-lg md:p-6 lg:p-8">
+      
+      <!-- Título de la publicación -->
+      <h3 class="text-lg font-semibold text-gray-800 mb-2 md:text-xl lg:text-2xl">
+        {{ post.title }}
+      </h3>
+  
+      <!-- Contenido de la publicación -->
+      <p class="text-gray-700 mb-4 md:mb-6">
+        {{ post.body }}
+      </p>
+  
+      <!-- Botón para cargar comentarios -->
+      <button (click)="loadComments(post.id)" 
+              class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors duration-200 ease-in-out md:px-6 lg:px-8">
+        Ver Comentarios
+      </button>
+  
+      <!-- Contenedor de comentarios -->
+      <div *ngIf="comments.length" class="comments mt-4">
+        
+        <!-- Título de comentarios -->
+        <h4 class="text-md font-semibold text-gray-800 mb-2 md:text-lg">
+          Comentarios
+        </h4>
+  
+        <!-- Lista de comentarios -->
+        <ul class="list-disc list-inside space-y-2">
+          <li *ngFor="let comment of comments" class="text-gray-600">
+            <strong class="font-medium text-gray-900">{{ comment.name }}</strong>: {{ comment.body }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  

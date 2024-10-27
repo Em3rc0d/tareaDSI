@@ -9,6 +9,8 @@ import { NationalityComponent } from './nationality/nationality.component';
 import { LyricsComponent } from './lyrics/lyrics.component';
 import { FormsComponent } from './forms/forms.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import { IpInfoComponent } from './ip-info/ip-info.component';
+import { PostsComponent } from './posts/posts.component';
 
 export const routes: Routes = [
     {
@@ -25,13 +27,15 @@ export const routes: Routes = [
         component: CasitaComponent,
         children: [
             { path: 'home', component: HomeComponent },
-            { path: 'horoscopo', component: HoroscopoComponent },
+            // { path: 'horoscopo', component: HoroscopoComponent },
             { path: 'divisas', component: DivisasComponent },
             { path: 'trivia', component: TriviaComponent },
-            { path: 'games', component: GameComponent },
+            // { path: 'games', component: GameComponent },
             { path: 'nationality', component: NationalityComponent },
             { path: 'lyrics', component: LyricsComponent },
-            { path: 'forms', component: FormsComponent }
+            { path: 'forms', component: FormsComponent },
+            { path: 'ip-info', component: IpInfoComponent },
+            // { path: 'posts', component: PostsComponent }
         ]
     },
     {
