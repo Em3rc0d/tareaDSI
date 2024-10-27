@@ -29,22 +29,21 @@ export class IpInfoComponent implements OnInit {
       data => {
         this.userIpv4 = data.ip;
         console.log('IP del usuario:', this.userIpv4);
-
-        // Luego, obtener la información de geolocalización
         this.ipGeoService.getUserInfo(this.userIpv4).subscribe(
           geoData => {
             this.ipInfov4 = geoData;
             console.log('Información de IP:', this.ipInfov4);
           },
           error => {
-            console.error('Error al obtener la información de IP:', error);
+            console.error('Error al obtener la información de IP:', error.message);
           }
         );
       },
       error => {
-        console.error('Error al obtener la IP del usuario:', error);
+        console.error('Error al obtener la IP del usuario:', error.message);
       }
     );
+    
     this.ipGeoService.getGeoInfo().subscribe(
         geoData => {
           this.ipInfov6 = geoData;
