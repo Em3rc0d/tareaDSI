@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class IpGeoService {
-  private apiUrl = 'http://ipwho.is';
+  private apiUrl = 'https://ipwho.is';
 
   constructor(private http: HttpClient) {}
 
