@@ -73,12 +73,11 @@ export class FormsComponent implements OnInit, OnDestroy {
   }
 
   cargarUsuarios(): void {
-    this.randomService.getRandomUser().subscribe({
-      next: response => {
-        this.users = response.results.slice(0, 3);
-      },
-      error: error => {
-        console.error('Error al cargar los usuarios:', error);
+    // Carga usuarios aleatorios al inicializar el componente
+    this.randomService.getRandomUser().subscribe(response => {
+      this.users.push(response.results[0]); // Agrega el usuario a la lista
+      if (this.users.length < 3) { // Si hay menos de 3, sigue llamando a la API
+        this.cargarUsuarios();
       }
     });
   }

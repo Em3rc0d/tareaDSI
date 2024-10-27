@@ -1,151 +1,58 @@
 <h1 class="text-3xl font-bold mb-8 text-center text-gray-800">Contáctanos</h1>
-<form
-  [formGroup]="userForm"
-  (ngSubmit)="onSubmit()"
-  class="bg-white shadow-lg rounded-lg px-6 py-8 mb-8 max-w-md mx-auto screen-md:max-w-lg screen-lg:max-w-xl"
->
-  <!-- Nombre Completo -->
-  <div class="mb-6">
-    <label
-      class="block text-gray-700 text-sm font-semibold mb-2"
-      for="nombreCompleto"
-      >Nombre Completo</label
-    >
-    <input
-      id="nombreCompleto"
-      formControlName="nombreCompleto"
-      placeholder="Nombre Completo"
-      class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-    <div
-      *ngIf="
-        userForm.get('nombreCompleto')?.invalid &&
-        userForm.get('nombreCompleto')?.touched
-      "
-      class="text-red-500 text-sm"
-    >
-      Por favor ingresa tu nombre completo.
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="bg-white shadow-lg rounded-lg px-6 py-8 mb-8 max-w-md mx-auto">
+    <!-- Nombre Completo -->
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-semibold mb-2" for="nombreCompleto">Nombre Completo</label>
+        <input formControlName="nombreCompleto" placeholder="Nombre Completo" 
+            class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <div *ngIf="userForm.get('nombreCompleto')?.invalid && userForm.get('nombreCompleto')?.touched" 
+             class="text-red-500 text-sm">Por favor ingresa tu nombre completo.</div>
     </div>
-  </div>
 
-  <!-- Correo -->
-  <div class="mb-6">
-    <label class="block text-gray-700 text-sm font-semibold mb-2" for="correo"
-      >Correo</label
-    >
-    <input
-      formControlName="correo"
-      placeholder="Correo"
-      class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-    <div
-      *ngIf="
-        userForm.get('correo')?.hasError('email') &&
-        userForm.get('correo')?.touched
-      "
-      class="text-red-500 text-sm"
-    >
-      El correo electrónico no es válido.
+    <!-- Correo -->
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-semibold mb-2" for="correo">Correo</label>
+        <input formControlName="correo" placeholder="Correo" 
+            class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <div *ngIf="userForm.get('correo')?.hasError('email') && userForm.get('correo')?.touched" 
+             class="text-red-500 text-sm">El correo electrónico no es válido.</div>
     </div>
-  </div>
-
-  <!-- Confirmar Correo -->
-  <div class="mb-6">
-    <label
-      class="block text-gray-700 text-sm font-semibold mb-2"
-      for="confirmarCorreo"
-      >Confirmar Correo</label
-    >
-    <input
-      formControlName="confirmarCorreo"
-      placeholder="Confirmar Correo"
-      class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-    <div
-      *ngIf="
-        userForm.hasError('emailMismatch') &&
-        userForm.get('confirmarCorreo')?.touched
-      "
-      class="text-red-500 text-sm"
-    >
-      La confirmación de correo no coincide.
+    
+    <!-- Confirmar Correo -->
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-semibold mb-2" for="confirmarCorreo">Confirmar Correo</label>
+        <input formControlName="confirmarCorreo" placeholder="Confirmar Correo" 
+            class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
+        <div *ngIf="userForm.hasError('emailMismatch') && userForm.get('confirmarCorreo')?.touched" 
+             class="text-red-500 text-sm">La confirmación de correo no coincide.</div>
     </div>
-  </div>
 
-  <!-- Teléfono (opcional) -->
-  <div class="mb-6">
-    <label class="block text-gray-700 text-sm font-semibold mb-2" for="telefono"
-      >Teléfono</label
-    >
-    <input
-      formControlName="telefono"
-      placeholder="Teléfono (opcional)"
-      class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400"
-    />
-  </div>
-
-  <!-- Mensaje -->
-  <div class="mb-6">
-    <label class="block text-gray-700 text-sm font-semibold mb-2" for="mensaje"
-      >Mensaje</label
-    >
-    <textarea
-      formControlName="mensaje"
-      placeholder="Escribe tu mensaje aquí..."
-      class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 h-32 resize-none"
-    ></textarea>
-    <div
-      *ngIf="
-        userForm.get('mensaje')?.invalid && userForm.get('mensaje')?.touched
-      "
-      class="text-red-500 text-sm"
-    >
-      Por favor ingresa un mensaje.
+    <!-- Teléfono (opcional) -->
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-semibold mb-2" for="telefono">Teléfono</label>
+        <input formControlName="telefono" placeholder="Teléfono (opcional)" 
+            class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400" />
     </div>
-  </div>
 
-  <!-- Botón Enviar -->
-  <div class="flex items-center justify-center">
-    <button
-      type="submit"
-      class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 w-full screen-md:w-auto"
-      [disabled]="userForm.invalid"
-    >
-      Enviar
-    </button>
-  </div>
+    <!-- Mensaje -->
+    <div class="mb-6">
+        <label class="block text-gray-700 text-sm font-semibold mb-2" for="mensaje">Mensaje</label>
+        <textarea formControlName="mensaje" placeholder="Escribe tu mensaje aquí..." 
+            class="shadow border border-gray-300 rounded w-full py-3 px-4 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-400 h-32 resize-none"></textarea>
+        <div *ngIf="userForm.get('mensaje')?.invalid && userForm.get('mensaje')?.touched" 
+             class="text-red-500 text-sm">Por favor ingresa un mensaje.</div>
+    </div>
 
-  <!-- Mensaje de Estado -->
-  <div *ngIf="enviando" class="text-gray-500 text-center mt-4">Enviando...</div>
-  <div *ngIf="enviado" class="text-green-500 text-center mt-4">
-    ¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.
-  </div>
+    <!-- Botón Enviar -->
+    <div class="flex items-center justify-center">
+        <button type="submit" 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" 
+            [disabled]="userForm.invalid">
+            Enviar
+        </button>
+    </div>
+
+    <!-- Mensaje de Estado -->
+    <div *ngIf="enviando" class="text-gray-500 text-center mt-4">Enviando...</div>
+    <div *ngIf="enviado" class="text-green-500 text-center mt-4">¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.</div>
 </form>
-
-<div
-  *ngIf="horaLocal"
-  class="mb-6 p-4 bg-gray-100 rounded-lg shadow max-w-md mx-auto screen-md:max-w-lg screen-lg:max-w-xl"
->
-  <h2 class="text-xl font-semibold text-gray-800">Hora Local:</h2>
-  <p class="text-gray-700">{{ horaLocal }}</p>
-</div>
-
-<div class="max-w-md mx-auto screen-md:max-w-lg screen-lg:max-w-xl">
-    <details>
-      <summary class="text-xl font-semibold mb-4">Últimos usuarios:</summary>
-      <ul class="space-y-2">
-        <li
-          *ngFor="let user of users | slice : 0 : 3"
-          class="bg-white p-4 rounded-lg shadow hover:shadow-md transition-shadow flex items-center"
-        >
-          <img
-            [src]="user.picture.large"
-            alt="Foto de usuario"
-            class="w-12 h-12 rounded-full inline-block mr-2"
-          />
-          <span>{{ user.name.first }} {{ user.name.last }}</span>
-        </li>
-    </ul>
-  </details>
-
-</div>
