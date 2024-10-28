@@ -1,7 +1,7 @@
 <div class="p-2 bg-gray-100 rounded-lg w-full h-screen flex flex-col">
     <h2 class="text-2xl font-bold mb-4 text-center">Exchange Rates</h2>
     
-    <div class="mb-4 flex items-center space-x-4"> <!-- Flex container for horizontal alignment -->
+    <div class="mb-4 flex items-center space-x-4"> 
         <div class="flex-1">
             <label class="block text-gray-700 font-bold mb-2" for="amount">Soles</label>
             <input type="number" placeholder="Enter amount in PEN" class="p-2 border rounded-md w-full" [(ngModel)]="amount" />
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="flex-1 overflow-y-auto"> <!-- Occupies remaining space -->
+    <div class="flex-1 overflow-y-auto"> 
         <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             <div *ngFor="let rate of sortedFilteredRates()" class="bg-white p-3 rounded-lg shadow-md text-center transition-transform transform hover:scale-105">
                 <p class="font-semibold text-lg text-indigo-600">{{ rate.code }}</p>

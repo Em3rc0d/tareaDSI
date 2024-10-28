@@ -11,6 +11,8 @@ import { FormsComponent } from './forms/forms.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { IpInfoComponent } from './ip-info/ip-info.component';
 import { PostsComponent } from './posts/posts.component';
+import { EquipoComponent } from './equipo/equipo.component';
+import { ListaApisComponent } from './lista-apis/lista-apis.component';
 
 export const routes: Routes = [
     {
@@ -35,6 +37,8 @@ export const routes: Routes = [
             { path: 'lyrics', component: LyricsComponent },
             { path: 'forms', component: FormsComponent },
             { path: 'ip-info', component: IpInfoComponent },
+            { path: 'integrantes', component: EquipoComponent },
+            { path: 'apis', component: ListaApisComponent },
             // { path: 'posts', component: PostsComponent }
         ]
     },

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactService {
-  private apiUrl = 'https://localhost:3000/contact'; // Cambia a la URL de tu servidor
+  private apiUrl = 'https://backend-tarea-dsi.vercel.app/contact'; // Cambia a la URL de tu servidor
 
   constructor(private http: HttpClient) {}
 

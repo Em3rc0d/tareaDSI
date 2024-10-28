@@ -13,7 +13,8 @@ export class HomeComponent {
   constructor(private router: Router) {}
 
   explore() {
-    const routes = ['casita/divisas',
+    const routes = [
+      'casita/divisas',
       'casita/ip-info',
       'casita/trivia', 
       'casita/nationality', 
