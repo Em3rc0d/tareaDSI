@@ -36,7 +36,7 @@ export class FormsComponent implements OnInit, OnDestroy {
         telefono: ['', [Validators.pattern("^[0-9]*$")]],
         mensaje: ['', Validators.required]
       },
-      { validator: this.emailMatchValidator }
+      { validators: this.emailMatchValidator } // Cambiado a 'validators'
     );
   }
 
@@ -44,10 +44,10 @@ export class FormsComponent implements OnInit, OnDestroy {
     this.obtenerHoraLocal();
     this.cargarUsuarios();
 
-    // Intervalo para avanzar el tiempo en el componente cada segundo
+    // Intervalo para avanzar el tiempo en el componente cada minuto
     this.subscription = interval(60000).subscribe(() => {
       if (this.localDateTime) {
-        this.localDateTime.setSeconds(this.localDateTime.getSeconds() + 1);
+        this.localDateTime.setSeconds(this.localDateTime.getSeconds() + 60);
         this.horaLocal = this.formatDate(this.localDateTime);
       }
     });

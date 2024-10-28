@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContactService {
-  private apiUrl = 'https://magicloops.dev/api/loop/run/13eeb257-8dab-420b-bd8e-2814aa9aac29';
+  private apiUrl = 'https://localhost:3000/contact'; // Cambia a la URL de tu servidor
 
   constructor(private http: HttpClient) {}
 
@@ -15,3 +15,4 @@ export class ContactService {
     return this.http.post(this.apiUrl, data, { headers });
   }
 }
+
