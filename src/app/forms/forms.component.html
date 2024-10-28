@@ -71,18 +71,18 @@
     <button
       type="submit"
       class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 transition duration-200"
-      [disabled]="userForm.invalid"
+      [disabled]="userForm.invalid || enviando"
     >
       Enviar
     </button>
   </div>
 
-  <!-- Mensaje de Estado -->
+  <!-- Mensajes de Estado -->
   <div *ngIf="enviando" class="text-gray-500 text-center mt-4">Enviando...</div>
-  <div *ngIf="enviado" class="text-green-500 text-center mt-4">
-    ¡Gracias! Hemos recibido tu mensaje y te contactaremos pronto.
-  </div>
+  <div *ngIf="enviado" class="text-green-500 text-center mt-4">¡Formulario enviado con éxito!</div>
+  <div *ngIf="errorMensaje" class="text-red-500 text-center mt-4">{{ errorMensaje }}</div>
 </form>
+
 
 <div *ngIf="horaLocal" class="mb-6 p-4 bg-gray-100 rounded-lg shadow">
   <h2 class="text-xl font-semibold text-gray-800">Hora Local:</h2>

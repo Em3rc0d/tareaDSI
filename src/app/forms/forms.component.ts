@@ -17,6 +17,7 @@ export class FormsComponent implements OnInit, OnDestroy {
   userForm: FormGroup;
   enviando: boolean = false;
   enviado: boolean = false;
+  errorMensaje: string = ''; // Para mostrar mensajes de error
   horaLocal: string = '';
   users: any[] = [];
   private subscription: Subscription | null = null;
@@ -36,7 +37,7 @@ export class FormsComponent implements OnInit, OnDestroy {
         telefono: ['', [Validators.pattern("^[0-9]*$")]],
         mensaje: ['', Validators.required]
       },
-      { validators: this.emailMatchValidator } // Cambiado a 'validators'
+      { validators: this.emailMatchValidator } // Validación personalizada
     );
   }
 
@@ -64,7 +65,6 @@ export class FormsComponent implements OnInit, OnDestroy {
       data => {
         this.localDateTime = new Date(data.dateTime);
         this.horaLocal = this.formatDate(this.localDateTime);
-        console.log('Hora Local:', this.horaLocal);
       },
       error => {
         console.error('Error al obtener la hora:', error);
@@ -73,10 +73,9 @@ export class FormsComponent implements OnInit, OnDestroy {
   }
 
   cargarUsuarios(): void {
-    // Carga usuarios aleatorios al inicializar el componente
     this.randomService.getRandomUser().subscribe(response => {
       this.users.push(response.results[0]); // Agrega el usuario a la lista
-      if (this.users.length < 3) { // Si hay menos de 3, sigue llamando a la API
+      if (this.users.length < 3) {
         this.cargarUsuarios();
       }
     });
@@ -98,19 +97,22 @@ export class FormsComponent implements OnInit, OnDestroy {
   onSubmit(): void {
     if (this.userForm.valid) {
       this.enviando = true;
-      const formData = this.userForm.value;
+      const formData = {
+        name: this.userForm.value.nombreCompleto,
+        email: this.userForm.value.correo,
+        message: this.userForm.value.mensaje
+      };
 
       this.contactService.sendContactForm(formData).subscribe({
         next: response => {
-          console.log('STATUS:', response.status);
-          console.log('OUTPUT:', response.loopOutput);
           this.enviado = true;
-          this.enviando = false;
+          this.errorMensaje = ''; // Limpiar mensaje de error
           this.userForm.reset();
           setTimeout(() => (this.enviado = false), 3000);
         },
         error: error => {
           console.error('Error al enviar el formulario:', error);
+          this.errorMensaje = 'Ocurrió un error al enviar el formulario. Por favor, inténtelo de nuevo más tarde.';
           this.enviando = false;
         }
       });
